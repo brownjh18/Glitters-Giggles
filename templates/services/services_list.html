@@ -1,0 +1,157 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Glitters & Giggles{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Our Services</h1>
+            <p class="lead text-muted">Discover our comprehensive range of children's event services</p>
+        </div>
+
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll">
+                <div class="card service-card h-100 shadow-sm">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-sparkles fa-3x"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|truncatechars:120 }}</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-secondary">{{ service.category|title }}</span>
+                            <span class="text-primary fw-bold">{{ service.price_range }}</span>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">Learn More</a>
+                            <button class="btn btn-primary" onclick="selectService({{ service.id }}, '{{ service.title }}')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="py-5">
+                    <i class="fas fa-sparkles fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">No services available</h3>
+                    <p class="text-muted">Please check back later for our amazing services.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Service Categories -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Service Categories</h2>
+            <p class="lead text-muted">Specialized services for every occasion</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="text-center">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-birthday-cake fa-2x"></i>
+                    </div>
+                    <h5>Birthday Parties</h5>
+                    <p class="text-muted">Magical birthday celebrations for children of all ages.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-building fa-2x"></i>
+                    </div>
+                    <h5>Corporate Events</h5>
+                    <p class="text-muted">Professional kids' corners for corporate events.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="text-center">
+                    <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-school fa-2x"></i>
+                    </div>
+                    <h5>School Activities</h5>
+                    <p class="text-muted">Educational and fun activities for schools.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="text-center">
+                    <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-flask fa-2x"></i>
+                    </div>
+                    <h5>STEM Learning</h5>
+                    <p class="text-muted">Science, Technology, Engineering, and Math activities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Your Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form" data-validate="true">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="client_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="client_email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="client_phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            <select class="form-select" name="location" required>
+                                <option value="">Choose location</option>
+                                <option value="kampala">Kampala</option>
+                                <option value="wakiso">Wakiso</option>
+                                <option value="entebbe">Entebbe</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Number of Children</label>
+                            <input type="number" class="form-control" name="number_of_kids" min="1" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Special Requests</label>
+                            <textarea class="form-control" name="special_requests" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                        </div>
+                        <input type="hidden" name="event_type" id="id_event_type">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-submit">Submit Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

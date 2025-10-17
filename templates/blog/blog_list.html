@@ -1,0 +1,155 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Blog - Glitters & Giggles{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Our Blog</h1>
+            <p class="lead text-muted">Tips, stories, and insights for parents and educators</p>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="row g-4">
+            {% for blog in blogs %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll">
+                <div class="card h-100 shadow-sm">
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-book-open fa-3x"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text">{{ blog.content|truncatechars:150 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                By {{ blog.author.name|default:blog.author.username }} • {{ blog.published_at|date:"M j, Y" }}
+                            </small>
+                            <a href="{% url 'blog_detail' blog.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                        </div>
+                        {% if blog.tags %}
+                        <div class="mt-2">
+                            {% for tag in blog.get_tags_list %}
+                                <span class="badge bg-light text-dark me-1">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="py-5">
+                    <i class="fas fa-book-open fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">No blog posts yet</h3>
+                    <p class="text-muted">Check back soon for our latest articles and parenting tips!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination (for future implementation) -->
+        {% if blogs|length >= 9 %}
+        <div class="text-center mt-4">
+            <nav aria-label="Blog pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Stay Updated with Our Latest Articles</h3>
+                <p class="mb-0">Subscribe to our newsletter for exclusive parenting tips, event updates, and educational insights.</p>
+            </div>
+            <div class="col-lg-4">
+                <form id="newsletter-form" class="d-flex gap-2" data-validate="true">
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-light">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Tags -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Popular Topics</h2>
+            <p class="lead text-muted">Explore articles by topic</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="{% url 'blog' %}" class="btn btn-outline-primary">All Topics</a>
+                    <a href="?tag=parenting" class="btn btn-outline-primary">Parenting</a>
+                    <a href="?tag=education" class="btn btn-outline-primary">Education</a>
+                    <a href="?tag=events" class="btn btn-outline-primary">Events</a>
+                    <a href="?tag=activities" class="btn btn-outline-primary">Activities</a>
+                    <a href="?tag=development" class="btn btn-outline-primary">Child Development</a>
+                    <a href="?tag=health" class="btn btn-outline-primary">Health & Safety</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Newsletter form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+
+            fetch('/newsletter/subscribe/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: new URLSearchParams({ 'email': email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Successfully subscribed to our newsletter!');
+                    this.reset();
+                } else {
+                    alert('Subscription failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    }
+});
+</script>
+{% endblock %}

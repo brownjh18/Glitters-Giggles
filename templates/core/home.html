@@ -1,0 +1,203 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Creating Magical Moments for Children</h1>
+                <p class="lead mb-4">
+                    We specialize in children's event management across Kampala, Wakiso, and Entebbe.
+                    From birthday parties to educational activities, we make every event unforgettable.
+                </p>
+                <a href="{% url 'services' %}" class="btn btn-primary btn-lg me-3">Our Services</a>
+                <a href="#contact" class="btn btn-outline-light btn-lg">Get in Touch</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'img/hero-image.jpg' %}" alt="Happy children at event" class="img-fluid rounded shadow" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Preview -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Our Services</h2>
+            <p class="lead text-muted">Discover what makes our events special</p>
+        </div>
+
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 animate-on-scroll">
+                <div class="card service-card h-100">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                    {% else %}
+                        <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-sparkles fa-3x"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|truncatechars:100 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary">{{ service.category|title }}</span>
+                            <button class="btn btn-primary btn-sm" onclick="selectService({{ service.id }}, '{{ service.title }}')">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'services' %}" class="btn btn-outline-primary">View All Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Preview -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Our Work</h2>
+            <p class="lead text-muted">A glimpse of the magical moments we've created</p>
+        </div>
+
+        <div class="row g-3">
+            {% for item in gallery_items %}
+            <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
+                <div class="gallery-item">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <div class="text-center">
+                            <h6>{{ item.title }}</h6>
+                            <small>{{ item.category|title }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'gallery' %}" class="btn btn-outline-primary">View Full Gallery</a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Stay Updated with Our Latest Events</h3>
+                <p class="mb-0">Subscribe to our newsletter for exclusive updates, special offers, and parenting tips.</p>
+            </div>
+            <div class="col-lg-4">
+                <form id="newsletter-form" class="d-flex gap-2" data-validate="true">
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-light">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Blog Posts -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Latest from Our Blog</h2>
+            <p class="lead text-muted">Tips, stories, and insights for parents and educators</p>
+        </div>
+
+        <div class="row g-4">
+            {% for blog in recent_blogs %}
+            <div class="col-lg-4 animate-on-scroll">
+                <div class="card h-100 shadow-sm">
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text">{{ blog.content|truncatechars:150 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">By {{ blog.author.name|default:blog.author.username }}</small>
+                            <a href="{% url 'blog_detail' blog.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'blog' %}" class="btn btn-outline-primary">Read All Posts</a>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Your Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form" data-validate="true">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="client_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="client_email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="client_phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            <select class="form-select" name="location" required>
+                                <option value="">Choose location</option>
+                                <option value="kampala">Kampala</option>
+                                <option value="wakiso">Wakiso</option>
+                                <option value="entebbe">Entebbe</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Number of Children</label>
+                            <input type="number" class="form-control" name="number_of_kids" min="1" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Special Requests</label>
+                            <textarea class="form-control" name="special_requests" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                        </div>
+                        <input type="hidden" name="event_type" id="id_event_type">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-submit">Submit Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

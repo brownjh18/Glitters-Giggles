@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Profile - Glitters & Giggles{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h2 class="display-6 fw-bold text-primary">My Profile</h2>
+                            <p class="text-muted">Manage your account information</p>
+                        </div>
+
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_name" class="form-label">Full Name</label>
+                                    <input type="text" name="name" id="id_name" class="form-control" value="{{ user.name }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_username" class="form-label">Username</label>
+                                    <input type="text" name="username" id="id_username" class="form-control" value="{{ user.username }}" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_email" class="form-label">Email</label>
+                                    <input type="email" name="email" id="id_email" class="form-control" value="{{ user.email }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_phone" class="form-label">Phone</label>
+                                    <input type="tel" name="phone" id="id_phone" class="form-control" value="{{ user.phone }}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role</label>
+                                <input type="text" class="form-control" value="{{ user.get_role_display }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Member Since</label>
+                                <input type="text" class="form-control" value="{{ user.date_joined|date:'M d, Y' }}" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-submit">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,340 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Contact Hero -->
+<section class="hero-section" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Get in Touch</h1>
+                <p class="lead mb-4">
+                    Ready to create magical moments for your child? We'd love to hear from you.
+                    Contact us today to discuss your event needs.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'img/contact-hero.jpg' %}" alt="Contact us" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form & Info -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Form -->
+            <div class="col-lg-8 animate-on-scroll">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="card-title mb-4">Send us a Message</h3>
+                        <form method="post" data-validate="true">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="6" placeholder="Tell us about your event needs..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4">
+                <div class="animate-on-scroll">
+                    <h4 class="mb-4">Contact Information</h4>
+
+                    <div class="mb-4">
+                        <h6 class="text-primary"><i class="fas fa-phone me-2"></i>Phone</h6>
+                        <p class="mb-0">+256 XXX XXX XXX</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6 class="text-primary"><i class="fas fa-envelope me-2"></i>Email</h6>
+                        <p class="mb-0">info@glittersgiggles.com</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6 class="text-primary"><i class="fas fa-clock me-2"></i>Business Hours</h6>
+                        <p class="mb-1">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p class="mb-0">Saturday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="animate-on-scroll">
+                    <h4 class="mb-4">Quick Actions</h4>
+                    <div class="d-grid gap-2">
+                        <a href="#bookingModal" class="btn btn-primary" data-bs-toggle="modal">
+                            <i class="fas fa-calendar me-2"></i>Book an Event
+                        </a>
+                        <a href="{% url 'services' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-list me-2"></i>View Services
+                        </a>
+                        <a href="https://wa.me/256700123456" target="_blank" class="btn btn-success">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Locations -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Our Locations</h2>
+            <p class="lead text-muted">Serving families across Uganda</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 animate-on-scroll">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Kampala</h5>
+                        <p class="card-text">Our main office and event coordination center in the heart of Kampala.</p>
+                        <p class="text-muted mb-0">123 Kampala Road, Nakasero</p>
+                        <div id="kampala-map" class="map-container mt-3" style="height: 200px; border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 animate-on-scroll">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Wakiso</h5>
+                        <p class="card-text">Serving the growing communities in Wakiso district with personalized event experiences.</p>
+                        <p class="text-muted mb-0">456 Wakiso Avenue, Entebbe Road</p>
+                        <div id="wakiso-map" class="map-container mt-3" style="height: 200px; border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 animate-on-scroll">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Entebbe</h5>
+                        <p class="card-text">Bringing joy to families in Entebbe with our comprehensive event management services.</p>
+                        <p class="text-muted mb-0">789 Entebbe Street, Central Division</p>
+                        <div id="entebbe-map" class="map-container mt-3" style="height: 200px; border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">Frequently Asked Questions</h2>
+            <p class="lead text-muted">Everything you need to know about our services</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item animate-on-scroll">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How far in advance should I book an event?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We recommend booking at least 2-4 weeks in advance for birthday parties and 1-2 months for larger corporate or school events. However, we can often accommodate last-minute requests depending on availability.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item animate-on-scroll">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Do you provide transportation for events?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer transportation services for our events. This can include pickup and drop-off for children, as well as transportation for equipment and decorations. Additional fees may apply.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item animate-on-scroll">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                What age groups do you cater to?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We cater to children from ages 2 to 16 years old. Our activities and events are designed to be age-appropriate and engaging for different developmental stages.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item animate-on-scroll">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Do you offer customized packages?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! We love working with clients to create customized packages that fit their specific needs, themes, and budgets. Contact us to discuss your unique requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Modal (same as home page) -->
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Your Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form" data-validate="true">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="client_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="client_email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="client_phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            <select class="form-select" name="location" required>
+                                <option value="">Choose location</option>
+                                <option value="kampala">Kampala</option>
+                                <option value="wakiso">Wakiso</option>
+                                <option value="entebbe">Entebbe</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Number of Children</label>
+                            <input type="number" class="form-control" name="number_of_kids" min="1" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Special Requests</label>
+                            <textarea class="form-control" name="special_requests" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                        </div>
+                        <input type="hidden" name="event_type" id="id_event_type">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-submit">Submit Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMaps" async defer></script>
+<script>
+function initMaps() {
+    // Kampala coordinates (approximate)
+    const kampala = { lat: 0.3476, lng: 32.5825 };
+    const wakiso = { lat: 0.4044, lng: 32.4594 };
+    const entebbe = { lat: 0.0517, lng: 32.4637 };
+
+    // Kampala Map
+    const kampalaMap = new google.maps.Map(document.getElementById('kampala-map'), {
+        zoom: 15,
+        center: kampala,
+        styles: [
+            {
+                featureType: 'all',
+                elementType: 'geometry.fill',
+                stylers: [{ color: '#f5f5f5' }]
+            }
+        ]
+    });
+
+    new google.maps.Marker({
+        position: kampala,
+        map: kampalaMap,
+        title: 'Glitters & Giggles - Kampala'
+    });
+
+    // Wakiso Map
+    const wakisoMap = new google.maps.Map(document.getElementById('wakiso-map'), {
+        zoom: 15,
+        center: wakiso,
+        styles: [
+            {
+                featureType: 'all',
+                elementType: 'geometry.fill',
+                stylers: [{ color: '#f5f5f5' }]
+            }
+        ]
+    });
+
+    new google.maps.Marker({
+        position: wakiso,
+        map: wakisoMap,
+        title: 'Glitters & Giggles - Wakiso'
+    });
+
+    // Entebbe Map
+    const entebbeMap = new google.maps.Map(document.getElementById('entebbe-map'), {
+        zoom: 15,
+        center: entebbe,
+        styles: [
+            {
+                featureType: 'all',
+                elementType: 'geometry.fill',
+                stylers: [{ color: '#f5f5f5' }]
+            }
+        ]
+    });
+
+    new google.maps.Marker({
+        position: entebbe,
+        map: entebbeMap,
+        title: 'Glitters & Giggles - Entebbe'
+    });
+}
+</script>
+{% endblock %}

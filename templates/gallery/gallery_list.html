@@ -1,0 +1,189 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Photo Gallery - Glitters & Giggles{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Our Photo Gallery</h1>
+            <p class="lead text-muted">Capturing magical moments from our children's events</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8">
+                <div class="d-flex flex-wrap justify-content-center gap-2" id="category-filter">
+                    <a href="{% url 'gallery' %}" class="btn btn-outline-primary {% if not selected_category %}active{% endif %}">All</a>
+                    {% for category in categories %}
+                        <a href="?category={{ category }}" class="btn btn-outline-primary {% if selected_category == category %}active{% endif %}">
+                            {{ category|title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="row g-3" id="gallery-grid">
+            {% for item in gallery_items %}
+            <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
+                <div class="gallery-item position-relative">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
+                    <div class="gallery-overlay">
+                        <div class="text-center">
+                            <h6 class="mb-1">{{ item.title }}</h6>
+                            <small class="text-light">{{ item.category|title }}</small>
+                            <p class="mb-2 mt-2 small">{{ item.description|truncatechars:80 }}</p>
+                            <small class="text-light opacity-75">{{ item.created_at|date:"M j, Y" }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="py-5">
+                    <i class="fas fa-images fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">No gallery items found</h3>
+                    <p class="text-muted">{% if selected_category %}No images in the {{ selected_category|title }} category yet.{% else %}Check back soon for amazing event photos!{% endif %}</p>
+                    {% if selected_category %}
+                        <a href="{% url 'gallery' %}" class="btn btn-primary">View All Images</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Load More Button (for future AJAX implementation) -->
+        {% if gallery_items|length >= 12 %}
+        <div class="text-center mt-4">
+            <button class="btn btn-outline-primary" id="load-more-btn">
+                <i class="fas fa-plus me-2"></i>Load More Images
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Gallery Stats -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-item">
+                    <i class="fas fa-camera fa-3x mb-3"></i>
+                    <h3 class="display-6 fw-bold">{{ gallery_items|length }}</h3>
+                    <p class="mb-0">Beautiful Moments Captured</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-item">
+                    <i class="fas fa-smile fa-3x mb-3"></i>
+                    <h3 class="display-6 fw-bold">{{ categories|length }}</h3>
+                    <p class="mb-0">Event Categories</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-item">
+                    <i class="fas fa-users fa-3x mb-3"></i>
+                    <h3 class="display-6 fw-bold">500+</h3>
+                    <p class="mb-0">Happy Children</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="stat-item">
+                    <i class="fas fa-star fa-3x mb-3"></i>
+                    <h3 class="display-6 fw-bold">4.9</h3>
+                    <p class="mb-0">Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="display-5 fw-bold text-primary mb-4">Ready to Create Your Own Magical Memories?</h2>
+            <p class="lead text-muted mb-4">Join the hundreds of families who have trusted us with their children's special events.</p>
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                <a href="{% url 'services' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-list me-2"></i>View Our Services
+                </a>
+                <button class="btn btn-success btn-lg" onclick="selectService(0, 'General Inquiry')">
+                    <i class="fas fa-calendar me-2"></i>Book an Event
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Your Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form" data-validate="true">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" name="client_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="client_email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="client_phone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            <select class="form-select" name="location" required>
+                                <option value="">Choose location</option>
+                                <option value="kampala">Kampala</option>
+                                <option value="wakiso">Wakiso</option>
+                                <option value="entebbe">Entebbe</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Event Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Number of Children</label>
+                            <input type="number" class="form-control" name="number_of_kids" min="1" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Special Requests</label>
+                            <textarea class="form-control" name="special_requests" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                        </div>
+                        <input type="hidden" name="event_type" id="id_event_type">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-submit">Submit Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Gallery filtering (for future enhancement)
+document.addEventListener('DOMContentLoaded', function() {
+    // Add any gallery-specific JavaScript here
+    console.log('Gallery page loaded');
+});
+</script>
+{% endblock %}
