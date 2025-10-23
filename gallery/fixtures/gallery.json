@@ -1,0 +1,90 @@
+[
+  {
+    "model": "gallery.gallery",
+    "pk": 1,
+    "fields": {
+      "title": "Birthday Party Extravaganza",
+      "description": "A magical birthday celebration with themed decorations and joyful activities",
+      "image": "1464366400600",
+      "category": "birthday",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 2,
+    "fields": {
+      "title": "Corporate Team Building",
+      "description": "Fun team building activities that brought everyone together",
+      "image": "1507003211169",
+      "category": "corporate",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 3,
+    "fields": {
+      "title": "School Science Fair",
+      "description": "Exciting science experiments and discoveries at our school activity day",
+      "image": "1509062522246",
+      "category": "school",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 4,
+    "fields": {
+      "title": "Cultural Dance Performance",
+      "description": "Traditional Ugandan dances performed by talented young artists",
+      "image": "1506905925346",
+      "category": "cultural",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 5,
+    "fields": {
+      "title": "STEM Workshop",
+      "description": "Children engaged in hands-on STEM learning activities",
+      "image": "1507003211169",
+      "category": "stem",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 6,
+    "fields": {
+      "title": "Inclusive Play Session",
+      "description": "All children participating together in inclusive activities",
+      "image": "1509062522246",
+      "category": "inclusive",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 7,
+    "fields": {
+      "title": "Birthday Cake Ceremony",
+      "description": "The highlight of every birthday party - the cake cutting moment",
+      "image": "1465494865139",
+      "category": "birthday",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "gallery.gallery",
+    "pk": 8,
+    "fields": {
+      "title": "Art and Craft Workshop",
+      "description": "Creative expression through various art and craft activities",
+      "image": "1509062522246",
+      "category": "school",
+      "created_at": "2024-01-15T10:00:00Z"
+    }
+  }
+]

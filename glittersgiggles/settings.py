@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'cloudinary_storage',
     'cloudinary',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -136,26 +137,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Cloudinary settings
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'your-cloud-name',
-    'API_KEY': 'your-api-key',
-    'API_SECRET': 'your-api-secret',
-}
-
-cloudinary.config(**CLOUDINARY_STORAGE)
-
-# Use Cloudinary for media storage
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Media files configuration for local development
+# Cloudinary disabled - using local storage
 
 # REST Framework settings
 REST_FRAMEWORK = {
@@ -185,8 +174,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@gmail.com'
-EMAIL_HOST_PASSWORD = 'your-app-password'
+EMAIL_HOST_USER = 'jonahbrownddumba@gmail.com'
+EMAIL_HOST_PASSWORD = 'your-app-password'  # You'll need to set this up with your Gmail app password
+DEFAULT_FROM_EMAIL = 'jonahbrownddumba@gmail.com'
 
 # Google Maps API Key (for location integration)
 GOOGLE_MAPS_API_KEY = 'your-google-maps-api-key'

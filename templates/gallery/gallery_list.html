@@ -30,7 +30,7 @@
             {% for item in gallery_items %}
             <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
                 <div class="gallery-item position-relative">
-                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
+                    <img src="https://images.unsplash.com/photo-{{ item.image }}?w=400&h=300&fit=crop&crop=center" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
                     <div class="gallery-overlay">
                         <div class="text-center">
                             <h6 class="mb-1">{{ item.title }}</h6>

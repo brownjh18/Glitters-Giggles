@@ -1,5 +1,4 @@
 from django.db import models
-from cloudinary.models import CloudinaryField
 
 class Service(models.Model):
     CATEGORY_CHOICES = [
@@ -15,7 +14,7 @@ class Service(models.Model):
     description = models.TextField()
     price_range = models.CharField(max_length=100, help_text="e.g., 'UGX 500,000 - 1,000,000'")
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    image = CloudinaryField('image', blank=True, null=True)
+    image = models.ImageField(upload_to='services/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

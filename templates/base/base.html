@@ -29,7 +29,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
@@ -66,9 +66,7 @@
                             </ul>
                         </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
-                        </li>
+                        <!-- Login button hidden as per request -->
                     {% endif %}
                 </ul>
             </div>
@@ -91,6 +89,9 @@
                         <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.tiktok.com/@glitters.and.gigg" target="_blank" class="text-light me-3" title="Follow us on TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -109,8 +110,8 @@
                         <li><i class="fas fa-map-marker-alt me-2"></i>Wakiso</li>
                         <li><i class="fas fa-map-marker-alt me-2"></i>Entebbe</li>
                     </ul>
-                    <p><i class="fas fa-phone me-2"></i>+256 XXX XXX XXX</p>
-                    <p><i class="fas fa-envelope me-2"></i>info@glittersgiggles.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+256 748 123 888 / +256 775 785 911</p>
+                    <p><i class="fas fa-envelope me-2"></i>doreenmatha.nakibugw@gmail.com</p>
                 </div>
             </div>
             <hr>
@@ -122,7 +123,7 @@
 
     <!-- WhatsApp Widget -->
     <div id="whatsapp-widget" class="whatsapp-widget">
-        <a href="https://wa.me/256700123456" target="_blank" class="whatsapp-link" title="Chat with us on WhatsApp">
+        <a href="https://wa.me/256748123888" target="_blank" class="whatsapp-link" title="Chat with us on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>

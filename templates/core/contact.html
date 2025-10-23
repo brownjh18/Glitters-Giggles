@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="col-lg-6">
-                <img src="{% static 'img/contact-hero.jpg' %}" alt="Contact us" class="img-fluid rounded shadow">
+                <img src="{% static 'img/service-birthday.jpg' %}" alt="Contact us" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <div class="card shadow">
                     <div class="card-body p-5">
                         <h3 class="card-title mb-4">Send us a Message</h3>
-                        <form method="post" data-validate="true">
+                        <form id="contact-form" method="post" data-validate="true">
                             {% csrf_token %}
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -60,12 +60,12 @@
 
                     <div class="mb-4">
                         <h6 class="text-primary"><i class="fas fa-phone me-2"></i>Phone</h6>
-                        <p class="mb-0">+256 XXX XXX XXX</p>
+                        <p class="mb-0">+256 748 123 888 / +256 775 785 911</p>
                     </div>
 
                     <div class="mb-4">
                         <h6 class="text-primary"><i class="fas fa-envelope me-2"></i>Email</h6>
-                        <p class="mb-0">info@glittersgiggles.com</p>
+                        <p class="mb-0">doreenmatha.nakibugw@gmail.com</p>
                     </div>
 
                     <div class="mb-4">
@@ -85,7 +85,7 @@
                         <a href="{% url 'services' %}" class="btn btn-outline-primary">
                             <i class="fas fa-list me-2"></i>View Services
                         </a>
-                        <a href="https://wa.me/256700123456" target="_blank" class="btn btn-success">
+                        <a href="https://wa.me/256748123888" target="_blank" class="btn btn-success">
                             <i class="fab fa-whatsapp me-2"></i>WhatsApp Chat
                         </a>
                     </div>

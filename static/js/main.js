@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initializeNewsletter();
     initializeBookingForm();
+    initializeContactForm();
     initializeGallery();
     initializeAnimations();
+    initializeScrollEffects();
 });
 
 // Newsletter subscription
@@ -234,3 +236,137 @@ function enhanceFormValidation() {
 
 // Initialize form validation
 enhanceFormValidation();
+
+// Scroll effects for enhanced UX
+function initializeScrollEffects() {
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Add shadow to navbar on scroll
+        if (scrollTop > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+
+        lastScrollTop = scrollTop;
+    });
+}
+
+// Contact form initialization
+function initializeContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner me-2"></span>Sending...';
+            submitBtn.disabled = true;
+
+            // Submit via AJAX to API
+            fetch('/api/contact/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                showAlert('Thank you for your message! We\'ll get back to you soon.', 'success');
+                this.reset();
+            })
+            .catch(error => {
+                showAlert('Something went wrong. Please try again.', 'danger');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+}
+
+// Enhanced gallery with lightbox
+function initializeGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+
+    galleryItems.forEach(img => {
+        img.addEventListener('click', function() {
+            createLightbox(this.src, this.alt);
+        });
+    });
+}
+
+function createLightbox(src, alt) {
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-overlay';
+    lightbox.innerHTML = `
+        <div class="lightbox-content">
+            <img src="${src}" alt="${alt}">
+            <button class="lightbox-close">&times;</button>
+        </div>
+    `;
+
+    document.body.appendChild(lightbox);
+
+    // Close lightbox
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('lightbox-close')) {
+            this.remove();
+        }
+    });
+
+    // Add lightbox styles
+    if (!document.querySelector('#lightbox-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'lightbox-styles';
+        styles.textContent = `
+            .lightbox-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+            .lightbox-content {
+                position: relative;
+                max-width: 90%;
+                max-height: 90%;
+            }
+            .lightbox-content img {
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 10px;
+            }
+            .lightbox-close {
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+}

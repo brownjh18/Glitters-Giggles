@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-6 animate-on-scroll">
                 <div class="card service-card h-100 shadow-sm">
                     {% if service.image %}
-                        <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
+                        <img src="https://images.unsplash.com/photo-{{ service.image }}?w=400&h=300&fit=crop&crop=center" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
                     {% else %}
                         <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
                             <i class="fas fa-sparkles fa-3x"></i>
@@ -50,48 +50,133 @@
 </section>
 
 <!-- Service Categories -->
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold text-primary">Service Categories</h2>
-            <p class="lead text-muted">Specialized services for every occasion</p>
+            <h2 class="display-5 fw-bold text-primary">What We Offer</h2>
+            <p class="lead text-muted">Comprehensive children's event services that solve real problems</p>
         </div>
 
         <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="text-center">
                     <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-birthday-cake fa-2x"></i>
+                        <i class="fas fa-mobile-alt fa-2x"></i>
                     </div>
-                    <h5>Birthday Parties</h5>
-                    <p class="text-muted">Magical birthday celebrations for children of all ages.</p>
+                    <h5>Mobile Activities</h5>
+                    <p class="text-muted">100% mobile services for school fields, compounds, event tents, or halls.</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="text-center">
                     <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-building fa-2x"></i>
+                        <i class="fas fa-birthday-cake fa-2x"></i>
                     </div>
-                    <h5>Corporate Events</h5>
-                    <p class="text-muted">Professional kids' corners for corporate events.</p>
+                    <h5>Stress-Free Birthdays</h5>
+                    <p class="text-muted">Structured birthday parties without the stress - we handle everything professionally.</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-hands fa-2x"></i>
+                    </div>
+                    <h5>Hands-On Creativity</h5>
+                    <p class="text-muted">Creative activities for groups that develop skills and spark imagination.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h5>Team Building</h5>
+                    <p class="text-muted">Problem-solving and team-building activities for children of all ages.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-heart fa-2x"></i>
+                    </div>
+                    <h5>Inclusive Play</h5>
+                    <p class="text-muted">Calm, inclusive settings that welcome children of all abilities and backgrounds.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-building fa-2x"></i>
+                    </div>
+                    <h5>Corporate Child Care</h5>
+                    <p class="text-muted">Supervised play zones, crafts, and quiet areas during corporate events.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Services -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">More Services</h2>
+            <p class="lead text-muted">Specialized programs for unique needs</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-flask fa-2x"></i>
+                    </div>
+                    <h5>STEM Activity Stations</h5>
+                    <p class="text-muted">Science, Technology, Engineering, and Math activities through play.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-drum fa-2x"></i>
+                    </div>
+                    <h5>Cultural Programs</h5>
+                    <p class="text-muted">Drumming, dance sessions, and cultural exposure activities.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
                 <div class="text-center">
                     <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                         <i class="fas fa-school fa-2x"></i>
                     </div>
-                    <h5>School Activities</h5>
-                    <p class="text-muted">Educational and fun activities for schools.</p>
+                    <h5>School Theme Days</h5>
+                    <p class="text-muted">Treasure hunts, art corners, mobile animal farms, and storytelling.</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="text-center">
                     <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                        <i class="fas fa-flask fa-2x"></i>
+                        <i class="fas fa-user-friends fa-2x"></i>
                     </div>
-                    <h5>STEM Learning</h5>
-                    <p class="text-muted">Science, Technology, Engineering, and Math activities.</p>
+                    <h5>Autism-Friendly Playdates</h5>
+                    <p class="text-muted">Calm, structured playdates for children with special needs.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-gift fa-2x"></i>
+                    </div>
+                    <h5>Full Birthday Packages</h5>
+                    <p class="text-muted">Themed games, crafts, mobile cinema, decorations, and complete outsourcing.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="text-center">
+                    <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-briefcase fa-2x"></i>
+                    </div>
+                    <h5>Mini Career Fairs</h5>
+                    <p class="text-muted">Interactive career exploration activities for young minds.</p>
                 </div>
             </div>
         </div>

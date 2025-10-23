@@ -10,7 +10,7 @@
             <!-- Service Image -->
             <div class="col-lg-6">
                 {% if service.image %}
-                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid rounded shadow">
+                    <img src="https://images.unsplash.com/photo-{{ service.image }}?w=600&h=400&fit=crop&crop=center" alt="{{ service.title }}" class="img-fluid rounded shadow">
                 {% else %}
                     <div class="bg-primary text-white d-flex align-items-center justify-content-center rounded shadow" style="height: 400px;">
                         <i class="fas fa-sparkles fa-5x"></i>
@@ -112,7 +112,7 @@
             <div class="col-lg-4 col-md-6 animate-on-scroll">
                 <div class="card h-100 shadow-sm">
                     {% if related_service.image %}
-                        <img src="{{ related_service.image.url }}" class="card-img-top" alt="{{ related_service.title }}" style="height: 200px; object-fit: cover;">
+                        <img src="https://images.unsplash.com/photo-{{ related_service.image }}?w=400&h=300&fit=crop&crop=center" class="card-img-top" alt="{{ related_service.title }}" style="height: 200px; object-fit: cover;">
                     {% else %}
                         <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
                             <i class="fas fa-sparkles fa-3x"></i>

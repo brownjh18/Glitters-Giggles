@@ -1,0 +1,44 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Planning the Perfect Children's Birthday Party",
+      "slug": "planning-perfect-childrens-birthday-party",
+      "content": "Planning a children's birthday party can be both exciting and overwhelming. Here are our expert tips for creating magical moments that your child will never forget.\n\nFirst, consider your child's interests and age group. A 5-year-old might love superheroes, while a 10-year-old might prefer gaming themes. Choose a theme that resonates with your child and their friends.\n\nTiming is crucial - aim for weekends when most children are available. Keep the party duration appropriate for the age group: 2-3 hours for younger children, longer for older kids.\n\nDon't forget the practical aspects: weather-appropriate activities, dietary restrictions, and emergency contact information for all guests.\n\nRemember, the best parties are those where children can be children - lots of laughter, games, and memories that last a lifetime.",
+      "image": "1464366400600",
+      "author": 1,
+      "published_at": "2024-01-20T10:00:00Z",
+      "tags": "birthday parties, planning, children, events",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 2,
+    "fields": {
+      "title": "The Benefits of STEM Education for Young Children",
+      "slug": "benefits-stem-education-young-children",
+      "content": "STEM education isn't just about preparing children for future careers - it's about developing critical thinking, problem-solving, and creativity from an early age.\n\nScience, Technology, Engineering, and Mathematics (STEM) activities help children understand the world around them. Through hands-on experiments and projects, kids learn to ask questions, make predictions, and test their ideas.\n\nResearch shows that children engaged in STEM activities develop better spatial awareness, logical thinking, and perseverance. These skills are valuable not just in STEM fields, but in all areas of life.\n\nAt Glitters & Giggles, we incorporate STEM elements into many of our activities, making learning fun and engaging. Whether it's building simple machines or exploring basic chemistry, STEM activities spark curiosity and confidence in young minds.\n\nParents can support STEM learning at home by encouraging questions, providing access to books and materials, and participating in activities together. Remember, every child is a natural scientist - we just need to nurture that innate curiosity.",
+      "image": "1507003211169",
+      "author": 1,
+      "published_at": "2024-01-18T10:00:00Z",
+      "tags": "STEM, education, children, learning, development",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "Creating Inclusive Events for Children of All Abilities",
+      "slug": "creating-inclusive-events-children-all-abilities",
+      "content": "Inclusive events ensure that every child, regardless of ability, can participate fully and have fun. Here's how we approach inclusivity at Glitters & Giggles.\n\nFirst, we assess the venue and activities for accessibility. This includes wheelchair access, sensory considerations, and adaptive equipment. We work with parents and specialists to understand each child's needs.\n\nOur activities are designed with universal design principles - benefiting all children, not just those with specific needs. For example, seated and standing options for games, visual and auditory cues, and flexible participation levels.\n\nCommunication is key. We provide clear information about activities in advance and maintain open dialogue with parents. Our team members are trained in inclusive practices and emergency procedures.\n\nInclusion isn't just about physical accessibility - it's about creating a welcoming environment where every child feels valued and included. When children of all abilities play together, everyone benefits from diverse perspectives and increased empathy.\n\nWe believe that inclusive events create better communities and help children develop understanding and acceptance from an early age. Every child deserves to experience the joy of celebration and learning.",
+      "image": "1509062522246",
+      "author": 1,
+      "published_at": "2024-01-16T10:00:00Z",
+      "tags": "inclusion, accessibility, children, events, diversity",
+      "is_published": true
+    }
+  }
+]

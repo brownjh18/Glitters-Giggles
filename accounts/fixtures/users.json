@@ -1,0 +1,40 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$test$test",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Glitters",
+      "last_name": "Admin",
+      "email": "admin@glittersgiggles.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "name": "Glitters Admin",
+      "role": "admin",
+      "phone": "+256700123456"
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$test$test",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "staff1",
+      "first_name": "Sarah",
+      "last_name": "Nakato",
+      "email": "sarah@glittersgiggles.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-01-01T00:00:00Z",
+      "name": "Sarah Nakato",
+      "role": "staff",
+      "phone": "+256701234567"
+    }
+  }
+]

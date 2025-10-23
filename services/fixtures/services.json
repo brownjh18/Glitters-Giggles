@@ -1,0 +1,86 @@
+[
+  {
+    "model": "services.service",
+    "pk": 1,
+    "fields": {
+      "title": "Magical Birthday Parties",
+      "description": "Create unforgettable birthday celebrations with themed decorations, games, and activities tailored for children of all ages. We handle everything from invitations to cake cutting!",
+      "price_range": "UGX 500,000 - 2,000,000",
+      "category": "birthday",
+      "image": "1464366400600",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2,
+    "fields": {
+      "title": "Corporate Team Building Events",
+      "description": "Engage your team with fun, interactive activities that build collaboration and creativity. Perfect for company retreats and team development sessions.",
+      "price_range": "UGX 1,500,000 - 5,000,000",
+      "category": "corporate",
+      "image": "1507003211169",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 3,
+    "fields": {
+      "title": "School Activity Days",
+      "description": "Educational and fun activities for schools including science experiments, art workshops, and outdoor adventures that complement classroom learning.",
+      "price_range": "UGX 300,000 - 1,000,000",
+      "category": "school",
+      "image": "1509062522246",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 4,
+    "fields": {
+      "title": "Cultural Celebration Events",
+      "description": "Celebrate Ugandan culture and traditions with authentic ceremonies, traditional dances, and cultural performances that educate and entertain.",
+      "price_range": "UGX 800,000 - 3,000,000",
+      "category": "cultural",
+      "image": "1506905925346",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 5,
+    "fields": {
+      "title": "STEM Learning Workshops",
+      "description": "Hands-on science, technology, engineering, and math activities designed to spark curiosity and learning in young minds through interactive experiments.",
+      "price_range": "UGX 400,000 - 1,200,000",
+      "category": "stem",
+      "image": "1507003211169",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 6,
+    "fields": {
+      "title": "Inclusive Play Activities",
+      "description": "Specialized activities designed for children with different abilities, ensuring every child can participate and have fun in an inclusive environment.",
+      "price_range": "UGX 600,000 - 1,800,000",
+      "category": "inclusive",
+      "image": "1509062522246",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  }
+]
