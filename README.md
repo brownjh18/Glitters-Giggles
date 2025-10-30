@@ -7,7 +7,7 @@
 
 > Where Magic And Fun Comes To Life
 
-Glitters & Giggles is a comprehensive children's event management platform built with Django. We specialize in creating magical, educational, and inclusive experiences for children across Kampala, Wakiso, and Entebbe.
+Glitters & Giggles is a comprehensive children event management platform built with Django. We specialize in creating magical, educational, and inclusive experiences for children across Kampala, Wakiso, and Entebbe.
 
 ## ✨ Features
 
