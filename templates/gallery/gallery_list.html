@@ -27,10 +27,10 @@
 
         <!-- Gallery Grid -->
         <div class="row g-3" id="gallery-grid">
-            {% for item in gallery_items %}
+            {% for item, item_index in gallery_items_with_index %}
             <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
                 <div class="gallery-item position-relative">
-                    <img src="https://images.unsplash.com/photo-{{ item.image }}?w=400&h=300&fit=crop&crop=center" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
+                    <img src="{% static 'img/Gallery-' %}{{ item_index }}.jpg" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
                     <div class="gallery-overlay">
                         <div class="text-center">
                             <h6 class="mb-1">{{ item.title }}</h6>
@@ -39,6 +39,7 @@
                             <small class="text-light opacity-75">{{ item.created_at|date:"M j, Y" }}</small>
                         </div>
                     </div>
+                    <a href="{% url 'gallery_detail' item.pk %}" class="gallery-link"></a>
                 </div>
             </div>
             {% empty %}

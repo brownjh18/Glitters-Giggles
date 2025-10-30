@@ -16,7 +16,7 @@
             <div class="col-lg-4 col-md-6 animate-on-scroll">
                 <div class="card service-card h-100 shadow-sm">
                     {% if service.image %}
-                        <img src="https://images.unsplash.com/photo-{{ service.image }}?w=400&h=300&fit=crop&crop=center" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
+                        <img src="{% static 'img/service-' %}{{ service.category }}.jpg" class="card-img-top" alt="{{ service.title }}" style="height: 200px; object-fit: cover;">
                     {% else %}
                         <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
                             <i class="fas fa-sparkles fa-3x"></i>
@@ -25,9 +25,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ service.title }}</h5>
                         <p class="card-text">{{ service.description|truncatechars:120 }}</p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-start align-items-center mb-3">
                             <span class="badge bg-secondary">{{ service.category|title }}</span>
-                            <span class="text-primary fw-bold">{{ service.price_range }}</span>
                         </div>
                         <div class="d-grid gap-2">
                             <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary">Learn More</a>

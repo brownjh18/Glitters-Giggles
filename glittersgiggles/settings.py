@@ -41,7 +41,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-mw!90i1*u&=7=%1h%pjz5
 AUTH_USER_MODEL = 'accounts.User'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,www.glittersandgiggles.com,glittersandgiggles.com').split(',')
 
@@ -151,6 +151,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# WhiteNoise settings for serving static files in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_USE_FINDERS = True
 
 # Media files
 MEDIA_URL = '/media/'

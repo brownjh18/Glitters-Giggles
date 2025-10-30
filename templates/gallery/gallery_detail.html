@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{{ gallery_item.title }} - Gallery{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-4">
+                    <h1 class="display-5 fw-bold text-primary">{{ gallery_item.title }}</h1>
+                    <div class="d-flex justify-content-center align-items-center gap-3 text-muted">
+                        <span><i class="fas fa-tag me-1"></i>{{ gallery_item.category|title }}</span>
+                        <span><i class="fas fa-calendar me-1"></i>{{ gallery_item.created_at|date:"F j, Y" }}</span>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <img src="{% static 'img/Gallery-' %}{{ gallery_index }}.jpg" alt="{{ gallery_item.title }}" class="img-fluid rounded shadow-lg" style="max-height: 600px;">
+                </div>
+
+                {% if gallery_item.description %}
+                <div class="gallery-description">
+                    <p class="lead text-center">{{ gallery_item.description }}</p>
+                </div>
+                {% endif %}
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'gallery' %}" class="btn btn-outline-primary me-3">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Gallery
+                    </a>
+                    <button class="btn btn-outline-secondary" onclick="shareGalleryItem()">
+                        <i class="fas fa-share me-1"></i>Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Gallery Items -->
+{% if related_gallery_items %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary">More from {{ gallery_item.category|title }}</h2>
+            <p class="lead text-muted">Explore similar gallery items</p>
+        </div>
+
+        <div class="row g-4">
+            {% for related_item, related_index in related_gallery_items %}
+            <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll">
+                <div class="gallery-item position-relative">
+                    <img src="{% static 'img/Gallery-' %}{{ related_index }}.jpg" alt="{{ related_item.title }}" class="img-fluid rounded shadow-sm">
+                    <div class="gallery-overlay">
+                        <div class="text-center">
+                            <h6 class="mb-1">{{ related_item.title }}</h6>
+                            <small class="text-light">{{ related_item.category|title }}</small>
+                        </div>
+                    </div>
+                    <a href="{% url 'gallery_detail' related_item.pk %}" class="gallery-link"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Share gallery item function
+function shareGalleryItem() {
+    if (navigator.share) {
+        navigator.share({
+            title: '{{ gallery_item.title }}',
+            text: 'Check out this gallery item from Glitters & Giggles',
+            url: window.location.href
+        });
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(function() {
+            alert('Link copied to clipboard!');
+        });
+    }
+}
+</script>
+{% endblock %}

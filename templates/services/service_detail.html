@@ -10,7 +10,7 @@
             <!-- Service Image -->
             <div class="col-lg-6">
                 {% if service.image %}
-                    <img src="https://images.unsplash.com/photo-{{ service.image }}?w=600&h=400&fit=crop&crop=center" alt="{{ service.title }}" class="img-fluid rounded shadow">
+                    <img src="{% static 'img/service-' %}{{ service.category }}.jpg" alt="{{ service.title }}" class="img-fluid rounded shadow">
                 {% else %}
                     <div class="bg-primary text-white d-flex align-items-center justify-content-center rounded shadow" style="height: 400px;">
                         <i class="fas fa-sparkles fa-5x"></i>
@@ -26,13 +26,6 @@
                         <span class="badge bg-secondary fs-6">{{ service.category|title }}</span>
                     </div>
                     <p class="lead text-muted mb-4">{{ service.description }}</p>
-
-                    <div class="mb-4">
-                        <h4 class="text-primary mb-3">Pricing</h4>
-                        <div class="bg-white p-3 rounded shadow-sm">
-                            <h5 class="text-success mb-0">{{ service.price_range }}</h5>
-                        </div>
-                    </div>
 
                     <div class="mb-4">
                         <h4 class="text-primary mb-3">What's Included</h4>

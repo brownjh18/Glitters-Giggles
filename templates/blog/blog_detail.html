@@ -18,9 +18,7 @@
                     </div>
                 </div>
 
-                {% if blog.image %}
-                    <img src="https://images.unsplash.com/photo-{{ blog.image }}?w=800&h=400&fit=crop&crop=center" alt="{{ blog.title }}" class="img-fluid rounded shadow mb-4">
-                {% endif %}
+                <img src="{% static 'img/blog-' %}{{ blog_index }}.jpg" alt="{{ blog.title }}" class="img-fluid rounded shadow mb-4">
 
                 <div class="blog-content">
                     {{ blog.content|linebreaks }}
@@ -49,16 +47,10 @@
         </div>
 
         <div class="row g-4">
-            {% for related_blog in related_blogs %}
+            {% for related_blog, related_index in related_blogs_with_index %}
             <div class="col-lg-4 animate-on-scroll">
                 <div class="card h-100 shadow-sm">
-                    {% if related_blog.image %}
-                        <img src="https://images.unsplash.com/photo-{{ related_blog.image }}?w=400&h=300&fit=crop&crop=center" class="card-img-top" alt="{{ related_blog.title }}" style="height: 200px; object-fit: cover;">
-                    {% else %}
-                        <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                            <i class="fas fa-book-open fa-3x"></i>
-                        </div>
-                    {% endif %}
+                    <img src="{% static 'img/blog-' %}{{ related_index }}.jpg" class="card-img-top" alt="{{ related_blog.title }}" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{ related_blog.title }}</h5>
                         <p class="card-text">{{ related_blog.content|truncatechars:120 }}</p>
