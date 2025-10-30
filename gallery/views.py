@@ -5,14 +5,6 @@ def gallery_list(request):
     # Get all gallery items, ordered by pk to match fixture order
     gallery_items = Gallery.objects.all().order_by('pk')
 
-    # Get unique categories for filtering
-    categories = Gallery.objects.values_list('category', flat=True).distinct()
-
-    # Filter by category if provided
-    category_filter = request.GET.get('category')
-    if category_filter:
-        gallery_items = gallery_items.filter(category=category_filter)
-
     # Add index to gallery items for proper image mapping (using pk as index)
     gallery_items_with_index = []
     for item in gallery_items:
@@ -21,8 +13,6 @@ def gallery_list(request):
     context = {
         'gallery_items': gallery_items,
         'gallery_items_with_index': gallery_items_with_index,
-        'categories': categories,
-        'selected_category': category_filter,
     }
     return render(request, 'gallery/gallery_list.html', context)
 

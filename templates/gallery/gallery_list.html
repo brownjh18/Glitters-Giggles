@@ -11,19 +11,6 @@
             <p class="lead text-muted">Capturing magical moments from our children events</p>
         </div>
 
-        <!-- Category Filter -->
-        <div class="row justify-content-center mb-4">
-            <div class="col-lg-8">
-                <div class="d-flex flex-wrap justify-content-center gap-2" id="category-filter">
-                    <a href="{% url 'gallery' %}" class="btn btn-outline-primary {% if not selected_category %}active{% endif %}">All</a>
-                    {% for category in categories %}
-                        <a href="?category={{ category }}" class="btn btn-outline-primary {% if selected_category == category %}active{% endif %}">
-                            {{ category|title }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
 
         <!-- Gallery Grid -->
         <div class="row g-3" id="gallery-grid">
@@ -33,10 +20,6 @@
                     <img src="{% static 'img/Gallery-' %}{{ item_index }}.jpg" alt="{{ item.title }}" class="img-fluid rounded shadow-sm">
                     <div class="gallery-overlay">
                         <div class="text-center">
-                            <h6 class="mb-1">{{ item.title }}</h6>
-                            <small class="text-light">{{ item.category|title }}</small>
-                            <p class="mb-2 mt-2 small">{{ item.description|truncatechars:80 }}</p>
-                            <small class="text-light opacity-75">{{ item.created_at|date:"M j, Y" }}</small>
                         </div>
                     </div>
                     <a href="{% url 'gallery_detail' item.pk %}" class="gallery-link"></a>
