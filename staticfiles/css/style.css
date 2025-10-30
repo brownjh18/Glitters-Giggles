@@ -44,6 +44,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.5rem;
 }
 
+.navbar-logo {
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.footer-logo {
+    border-radius: 8px;
+    object-fit: contain;
+}
+
 .nav-link {
     font-weight: 500;
     transition: color 0.3s ease;
@@ -422,6 +432,16 @@ h1, h2, h3, h4, h5, h6 {
 .alert-danger {
     background-color: rgba(231, 76, 60, 0.1);
     color: var(--danger-color);
+}
+
+/* Fixed navbar styles */
+.navbar.fixed-top {
+    z-index: 1030;
+}
+
+/* Add padding to body to account for fixed navbar */
+body {
+    padding-top: 76px; /* Adjust based on navbar height */
 }
 
 /* Navbar scroll effect */

@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(255, 230, 109, 0.8)), url('../img/hero-image.jpg');
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.8), rgba(255, 230, 109, 0.8)), url("../img/hero-image.00ecd130428b.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
