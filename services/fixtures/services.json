@@ -3,7 +3,7 @@
     "model": "services.service",
     "pk": 1,
     "fields": {
-      "title": "Magical Birthday Parties",
+      "title": "Magical Children Events",
       "description": "Create unforgettable birthday celebrations with themed decorations, games, and activities tailored for children of all ages. We handle everything from invitations to cake cutting!",
       "price_range": "UGX 500,000 - 2,000,000",
       "category": "birthday",
